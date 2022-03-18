@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apache
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/FilipeNunes2/Deployments.git
+    targetRevision: HEAD
+    path: apache
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: apache
+  syncPolicy:
+    syncOptions:     # Sync options which modifies sync behavior
+    - CreateNamespace=true # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
+
+
+
+
+
+
+
